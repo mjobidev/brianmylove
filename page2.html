@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <title>Do You Wanna Go Out With Me?</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="header_text">Do you wanna be my Valentine?</h1>
+        <div class="gif_container">
+            <img src="https://media.tenor.com/mePZoUpf-uMAAAAi/dudu-bubu.gif" alt="Cute Capoo GIF">
+        </div>
+        <div class="buttons">
+            <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
+            <button class="btn" id="noButton" onmouseover="moveButton()">No</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script> 
+
+    <script>
+        const noButton = document.getElementById('noButton');
+        const yesButton = document.getElementById('yesButton');
+        const container = document.querySelector('.container');
+
+        // Move the "No" button when hovered
+        noButton.addEventListener('mouseover', () => {
+            const windowHeight = window.innerHeight;
+            const windowWidth = window.innerWidth;
+
+            let newTop = Math.random() * (windowHeight - noButton.offsetHeight);
+            let newLeft = Math.random() * (windowWidth - noButton.offsetWidth);
+
+            newTop = Math.max(0, Math.min(newTop, windowHeight - noButton.offsetHeight));
+            newLeft = Math.max(0, Math.min(newLeft, windowWidth - noButton.offsetWidth));
+
+            noButton.style.position = 'absolute';
+            noButton.style.top = `${newTop}px`;
+            noButton.style.left = `${newLeft}px`;
+        });
+
+        // Handle "Yes" button click
+        yesButton.addEventListener('click', () => {
+            // Update the container with a sweet message
+            container.innerHTML = `
+                <h1>Yay! I love you babe! ❤️</h1>
+                <p>I'm soo happy!</p>
+                <img src="https://media1.tenor.com/m/chaoCqbi-KwAAAAC/love.gif" alt="Happy Capoo GIF" style="width: 200px;">
+            `;
+
+            // Trigger heart-shaped confetti effect
+            createHeartConfetti();
+        });
+
+        // Function to create heart-shaped confetti
+        function createHeartConfetti() {
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    heart.style.left = `${Math.random() * 100}vw`;
+                    heart.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                    heart.style.backgroundColor = ['#ff1493', '#ff69b4', '#ff0000'][Math.floor(Math.random() * 3)];
+                    document.body.appendChild(heart);
+
+                    // Remove the heart after animation ends
+                    heart.addEventListener('animationend', () => {
+                        heart.remove();
+                    });
+                }, i * 50); // Stagger the creation of hearts
+            }
+        }
+    </script>
+</body>
+</html>

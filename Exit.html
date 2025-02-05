@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <title>Do You Wanna Go Out With Me?</title>
+    
+</head>
+<body>
+    <div class="container">
+        <h1 class="header_text">But, But why? Please!</h1>
+        <div class="gif_container">
+            <img src="https://media.tenor.com/UdThavVus9oAAAAi/peach-and.gif" alt="Cute Capoo GIF">
+        </div>
+        <div class="buttons">
+            <button class="btn" id="yesButton" onclick="nextPage()">Changed My Mind</button>
+            <button class="btn" id="exitButton" onclick="exitPage()">Didn't Change</button>
+
+        </div>
+    </div>
+
+    
+
+
+    <script>
+    const container = document.querySelector('.container');
+
+    // Function to navigate to a new page
+    function nextPage() {
+        // Replace 'newpage.html' with the URL or file path of the page you want to navigate to
+        window.location.href = 'ask.html';
+    }
+
+    // Handle "Exit" button click
+    exitButton.addEventListener('click', () => {
+        // Update the container with a sweet message and two buttons
+        container.innerHTML = `
+            <h1>Fine Goodbye ❤️</h1>
+            <p>I'm soo sad!</p>
+            <img src="https://media.tenor.com/hJazauQezk0AAAAi/yaseen1.gif" alt="Happy Capoo GIF" style="width: 200px;">
+            
+        `;
+
+        // Add event listener to the "Change My Mind" button
+        const changeMindButton = document.getElementById('changeMindButton');
+        changeMindButton.addEventListener('click', resetPage);
+
+        // Add event listener to the "I'm Not Changing My Mind" button
+        const notChangingMindButton = document.getElementById('notChangingMindButton');
+        notChangingMindButton.addEventListener('click', () => {
+            alert("Okay, I respect your decision! ❤️");
+        });
+    });
+
+    // Function to reset the page to its original state
+    function resetPage() {
+        // Reset the page to its original state
+        container.innerHTML = `
+            <h1 class="header_text">Brian? I got something to ask...</h1>
+            <div class="gif_container">
+                <img src="https://media.tenor.com/JF6wQnZWb7QAAAAi/peach-goma-love-happy-lie-wiggle.gif" alt="Cute Capoo GIF">
+            </div>
+            <div class="buttons">
+                <button class="btn" id="yesButton" onclick="nextPage()">Yes my love?</button>
+                <button class="btn" id="exitButton">I don't Care.</button>
+            </div>
+        `;
+
+        // Reinitialize the buttons
+        initializeButtons();
+    }
+
+    // Function to initialize button behavior
+    function initializeButtons() {
+        const exitButton = document.getElementById('exitButton');
+        exitButton.addEventListener('click', handleExitButtonClick);
+    }
+
+    // Initialize buttons on page load
+    initializeButtons();
+</script>
+</body>
+</html>
